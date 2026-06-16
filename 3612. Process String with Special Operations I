@@ -1,0 +1,43 @@
+char arr[1000000] = {};
+
+
+char* processStr(char* s) {
+    int top = -1;
+        for(int i = 0;s[i]!= '\0'; i++ )
+        {
+            if(s[i]>= 'a' && s[i]<='z')
+            {
+                arr[++top] = s[i];
+                
+            }
+            else if(s[i] == '#')
+            {
+                int len = top+1;
+                for(int j = 0; j< len; j++)
+                {
+                arr[++top] = arr[j];
+                }
+            }
+            else if(s[i] == '%')
+            {
+                int len = top + 1;
+
+                for(int i = 0; i<len/2; i++)
+                {
+                    char temp = arr[i];
+                    arr[i] = arr[len -1 -i];
+                    arr[len -1 -i] = temp;
+                }
+
+            }
+            else if(s[i] == '*')
+            {
+                if(top>=0)
+                {
+                top--;
+                }
+            }
+        }
+        arr[top+1] = '\0';
+    return arr;
+}
